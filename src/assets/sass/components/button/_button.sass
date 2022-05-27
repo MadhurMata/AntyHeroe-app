@@ -1,0 +1,53 @@
+.search-button
+  width: 56px
+  height: 56px
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #EB2328
+  cursor: pointer
+  border-bottom-right-radius: 5px
+  border-top-right-radius: 5px
+
+.button-container
+  display: flex
+  justify-content: flex-end
+  width: 100%
+  margin-top: 24px
+
+
+  .link-button
+    display: flex
+    align-items: center
+    width: 168px
+    height: 48px
+    background-color: $grey1
+    border-radius: 5px
+
+    .icon
+      display: inline-block
+      width: 20px
+      height: 17.6px
+      background-size: cover
+
+    .icon-arrow 
+      background-image: url(/../public/images/arrow-white.png)
+
+    h4
+      font-size: 18px
+      color: $white
+      line-height: 24px
+      margin-left: 22px
+      margin-right: 14px
+
+    &:hover
+      background-color: $white
+      border: 2px solid $grey1
+      border-radius: 5px
+
+      .icon-arrow,
+      .icon-arrow 
+        background-image: url(/../public/images/arrow-grey.svg)
+
+      h4
+        color: $grey1

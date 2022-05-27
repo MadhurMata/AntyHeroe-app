@@ -1,0 +1,38 @@
+#root
+  width: 100%
+  min-height: 100vh
+  display: flex
+  justify-content: center
+  background-color: #E5E5E5
+
+.truncate
+  @include truncateText(298px)
+
+.truncate-multipleLine
+  display: -webkit-box
+  -webkit-line-clamp: 3
+  -webkit-box-orient: vertical 
+
+.error-message-container
+  width: 100%
+  .error-message
+    color: $grey1
+
+.wrapper
+  display: flex
+  flex-direction: column
+  width: 1110px
+  margin: 100px 60px
+
+
+
+  @media screen and (max-width: 1230px)
+    width: 730px
+  @media screen and (max-width: 850px)
+    width: 100%
+    margin: 50px 20px
+
+  @media screen and (max-width: 375px)
+    width: 100%
+    align-items: center
+    margin: 50px 20px
