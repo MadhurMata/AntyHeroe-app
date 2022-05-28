@@ -1,15 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Button from 'components/button/Button';
 
 export default function HeroCard({ heroe }) {
   const { thumbnail, name, description, id } = heroe;
+  let navigate = useNavigate();
 
   return (
     <div className="card">
       <div className="card-img-container">
-        <img src={`${thumbnail.path}.${thumbnail.extension}`} className="App-logo" alt="logo" />
+        <img src={`${thumbnail.path}.${thumbnail.extension}`} className="App-logo" alt={name} />
       </div>
       <div className="card-text-container">
         <div className="info-container">
@@ -18,14 +20,13 @@ export default function HeroCard({ heroe }) {
             {description !== '' ? description : '(No description available)'}
           </p>
         </div>
-        <Link to={`/${name}/${id}`}>
-          <div className="button-container">
-            <div className="link-button">
-              <h4>Read more</h4>
-              <span className="icon icon-arrow"></span>
-            </div>
-          </div>
-        </Link>
+        <Button
+          action={() => {
+            navigate(`/${name}/${id}`);
+          }}
+          textContent="Read more"
+          imageUrl="icon-arrow"
+        />
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 import React from 'react';
 
-function Button({ toggleFilter }) {
+function Button({ action, imageUrl, textContent }) {
   return (
     <div
       className="button"
       role="button"
       tabIndex={0}
-      onClick={() => toggleFilter()}
-      onKeyDown={() => toggleFilter()}>
-      <h4>Filter</h4>
-      <span className="icon icon-arrow"></span>
+      onClick={() => action()}
+      onKeyDown={() => action()}>
+      <h4>{textContent}</h4>
+      <span className={'icon ' + imageUrl}></span>
     </div>
   );
 }

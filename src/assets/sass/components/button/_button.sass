@@ -3,7 +3,7 @@
   justify-content: space-between
   align-items: center
   width: 168px
-  height: 56px
+  height: 50px
   padding: 1rem
   background-color: $grey1
   border-radius: 5px
@@ -17,6 +17,9 @@
   .icon-arrow
     background-image: url(/../public/images/arrow-white.png)
 
+  .icon-filter
+    background-image: url(/../public/images/filter.png)
+
   h4
     font-size: 18px
     color: $white
@@ -27,17 +30,20 @@
     border: 2px solid $grey1
     border-radius: 5px
 
-    .icon-arrow,
     .icon-arrow
       background-image: url(/../public/images/arrow-grey.svg)
+
+    .icon-filter
+      background-image: url(/../public/images/filter-dark.png)
 
     h4
       color: $grey1
 
   @media screen and (max-width: 730px)
-    width: 100px
+    justify-content: center
+    width: 50px
     height: 2rem
+    padding: 0
 
     h4
-      font-size: 16px
-      line-height: 18px
+      display: none

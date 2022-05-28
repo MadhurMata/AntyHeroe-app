@@ -7,14 +7,14 @@ import CustomSelect from 'components/customSelect/CustomSelect';
 import { TreesContext } from 'pages/home/Home';
 
 function Filter() {
-  const [items, setItems] = useContext(TreesContext) || [];
+  const [items, items2, setItems] = useContext(TreesContext) || [];
   const [showFilter, setShowFilter] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const [selectValue, setSelectValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    if (items && !checkbox) descriptionFilter();
+    if (items) descriptionFilter();
   }, [checkbox]);
 
   const toggleFilter = () => {
@@ -30,7 +30,7 @@ function Filter() {
   };
 
   const descriptionFilter = () => {
-    const filteredData = items.filter((item) => item.description);
+    const filteredData = checkbox ? items.filter((item) => item.description) : items2;
     setItems(filteredData);
     //setItems(filteredData);
   };
@@ -47,7 +47,7 @@ function Filter() {
     <div className="filter">
       <div className="filter_top">
         <Searchbar handleChange={searchFilter} searchValue={searchValue} />
-        <Button toggleFilter={toggleFilter} />
+        <Button action={toggleFilter} textContent="Filter" imageUrl="icon-filter" />
       </div>
       {showFilter ? (
         <div className="filter_bottom">

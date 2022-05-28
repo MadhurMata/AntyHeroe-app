@@ -14,7 +14,6 @@
     color: $grey2
     font-size: 18px
     line-height: 24px
-    font-weight: 700
     padding-left: 10px
     -webkit-appearance: none
     -moz-appearance: none
@@ -32,11 +31,6 @@
     &:focus
       box-shadow: 0 0 8px rgba(#66afe9, 0.6)
 
-    @media screen and (max-width: 730px)
-      font-size: 16px
-      line-height: 18px
-      padding: 6px
-
   &__caret
     position: absolute
     top: 50%
@@ -46,3 +40,11 @@
     height: 15px
     margin-top: -8px
     background-image: url(/../public/images/downward-arrow.svg)
+
+  @media screen and (max-width: 730px)
+    width: 100%
+
+    &__select
+      font-size: 16px
+      line-height: 18px
+      padding: 6px
