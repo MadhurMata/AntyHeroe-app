@@ -1,42 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function Searchbar() {
-  const [search, setSearch] = useState('');
-
-  const handleSubmit = () => {
-    console.log('hola');
-  };
-
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
-
+export default function Searchbar({ handleChange, searchValue }) {
   return (
     <div>
       <form className="searchbar-container" action="/" method="get">
-        {/* {isMouseOver.value ? (
-          <input
-            className="searchbar-hover"
-            type="text"
-            onChange={handleChange}
-            placeholder="Name of character"
-            value={search}
-          />
-        ) : (
-          <input
-            className="searchbar-no-hover"
-            type="text"
-            onChange={handleChange}
-            placeholder="Name of character"
-            value={search}
-          />
-        )} */}
-        <div
-          className="search-button"
-          onClick={handleSubmit}
-          onKeyDown={handleSubmit}
-          role="button"
-          tabIndex={0}>
+        <input
+          className="searchbar"
+          type="text"
+          onChange={(e) => handleChange(e.target.value)}
+          placeholder="Name of character"
+          value={searchValue}
+        />
+        <div className="search-button">
           <img src="/images/search.svg" alt="Search" />
         </div>
       </form>

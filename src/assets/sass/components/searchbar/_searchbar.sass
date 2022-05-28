@@ -1,12 +1,24 @@
 .searchbar-container
   display: flex
-  margin: 30px 0 66px
+  margin-right: 1rem
 
-.searchbar-no-hover
+.search-button
+  width: 56px
+  height: 56px
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #EB2328
+  cursor: pointer
+  border-bottom-right-radius: 5px
+  border-top-right-radius: 5px
+
+  @media screen and (max-width: 730px)
+    width: 2rem
+    height: 2rem
+
+.searchbar
   @include searchbar(484px)
-
-.searchbar-hover
-  @include searchbar(279px)
 
 ::-webkit-input-placeholder
   color: $grey2

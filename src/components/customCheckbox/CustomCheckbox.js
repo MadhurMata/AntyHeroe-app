@@ -1,6 +1,7 @@
 import React from 'react';
 
 function CustomCheckbox({ checkbox, toggleCheckboxState, label }) {
+  console.log('checkbox', checkbox);
   return checkbox ? (
     <div className="form-checkbox">
       <input

@@ -4,7 +4,7 @@
   width: $width
   height: 56px
   outline: none
-  border: 2px solid #E0E0E0
+  border: 2px solid $grey1
   border-top-left-radius: 5px
   border-bottom-left-radius: 5px
   border-right: none
@@ -14,9 +14,14 @@
   font-weight: 700
   padding-left: 10px
 
+  // @media screen and (max-width: 850px)
+  //   width: 279px
 
-  @media screen and (max-width: 850px)
-    width: 279px
+  @media screen and (max-width: 730px)
+    width: 200px
+    height: 2rem
+    font-size: 14px
+    line-height: 18px
 
 // Truncate text
 @mixin truncateText($width)
@@ -26,4 +31,3 @@
   text-overflow: ellipsis
   margin: 0
   background: white
-  

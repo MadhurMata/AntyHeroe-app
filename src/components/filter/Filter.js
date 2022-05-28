@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Searchbar from 'components/searchbar/Searchbar';
 import Button from 'components/button/Button';
 import CustomCheckbox from 'components/customCheckbox/CustomCheckbox';
 import CustomSelect from 'components/customSelect/CustomSelect';
 
-function Filter({ data }) {
-  const [items, setItems] = useState([]);
+import { TreesContext } from 'pages/home/Home';
+
+function Filter() {
+  const [items, setItems] = useContext(TreesContext) || [];
   const [showFilter, setShowFilter] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const [selectValue, setSelectValue] = useState('');
-  const [filterValue, setFilterValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
-  console.log('items', data);
+  useEffect(() => {
+    if (items && !checkbox) descriptionFilter();
+  }, [checkbox]);
 
   const toggleFilter = () => {
     setShowFilter(!showFilter);
@@ -19,7 +23,6 @@ function Filter({ data }) {
 
   const toggleCheckboxState = () => {
     setCheckbox(!checkbox);
-    console.log('Filter', checkbox);
   };
 
   const updateSelect = (value) => {
@@ -27,10 +30,9 @@ function Filter({ data }) {
   };
 
   const descriptionFilter = () => {
-    if (checkbox) {
-      const filteredData = items.filter((item) => !item.description);
-      setItems(filteredData);
-    }
+    const filteredData = items.filter((item) => item.description);
+    setItems(filteredData);
+    //setItems(filteredData);
   };
 
   const dateFilter = () => {
@@ -38,27 +40,26 @@ function Filter({ data }) {
   };
 
   const searchFilter = (value) => {
-    setFilterValue(value);
-    console.log('filterValue, filterValue);
+    setSearchValue(value);
   };
 
   return (
-    <>
-      <div>
-        <Searchbar searchFilter={searchFilter} />
+    <div className="filter">
+      <div className="filter_top">
+        <Searchbar handleChange={searchFilter} searchValue={searchValue} />
         <Button toggleFilter={toggleFilter} />
       </div>
       {showFilter ? (
-        <>
+        <div className="filter_bottom">
           <CustomCheckbox
             toggleCheckboxState={toggleCheckboxState}
             checkbox={checkbox}
             label="Heroes with description only"
           />
           <CustomSelect updateSelect={updateSelect} />
-        </>
+        </div>
       ) : null}
-    </>
+    </div>
   );
 }
 

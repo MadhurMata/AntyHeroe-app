@@ -1,0 +1,27 @@
+.filter
+  position: sticky
+  top: 8rem
+  display: flex
+  flex-direction: column
+  width: 100%
+  padding: 2rem 0
+  background: $grey4
+  z-index: 10
+
+  &_top
+    display: flex
+    justify-content: space-between
+    width: 100%
+
+  &_bottom
+    display: flex
+    width: 100%
+    margin-top: 1rem
+    // background-color: $white
+    // border-bottom-left-radius: 5px
+    // border-bottom-right-radius: 5px
+    @media screen and (max-width: 730px)
+      flex-direction: column
+
+  @media screen and (max-width: 730px)
+    width: auto

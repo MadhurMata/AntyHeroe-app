@@ -1,16 +1,21 @@
 .select-custom
   position: relative
   display: block
-  background-color: #fff
+  width: 300px
+  background-color: $white
+  border-radius: 5px
 
   &__select
     position: relative
-    z-index: 20
-    padding: 5px
-    width: 100%
-    border: 1px solid #ccc
-    border-radius: 0
-    background-color: transparent
+    width: inherit
+    height: 100%
+    border: 2px solid #444444
+    border-radius: 5px
+    color: $grey2
+    font-size: 18px
+    line-height: 24px
+    font-weight: 700
+    padding-left: 10px
     -webkit-appearance: none
     -moz-appearance: none
     -ms-appearance: none
@@ -26,6 +31,11 @@
 
     &:focus
       box-shadow: 0 0 8px rgba(#66afe9, 0.6)
+
+    @media screen and (max-width: 730px)
+      font-size: 16px
+      line-height: 18px
+      padding: 6px
 
   &__caret
     position: absolute
