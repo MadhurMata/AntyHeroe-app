@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { dateFormater, mapHeroesData, mapHeroeData } from 'common/lib/utils/utils';
+import { dateFilter, descriptionFilter, searchFilter } from './utils';
 
 const mockedApiHeroesResponse = [
   {
@@ -107,7 +108,7 @@ const mockedApiSingleHeroResponse = {
   ]
 };
 
-describe('Utils tests', () => {
+describe('Format data test', () => {
   // it('should return a filtered list of repositories by name', function () {
   //   const repositoryList = [
   //     { name: 'React Code' },
@@ -180,5 +181,152 @@ describe('Utils tests', () => {
   it('should return a formated date (YYYY) from a date input', function () {
     const expectedDate = 2013;
     expect(dateFormater('2013-09-18T15:54:04-0400')).toStrictEqual(expectedDate);
+  });
+});
+
+describe('Filters test', () => {
+  it('should show characters with date from 20 century', function () {
+    const filteredDataMock = [
+      {
+        modified: 2014
+      },
+      {
+        modified: 2022
+      },
+      {
+        modified: 1999
+      },
+      {
+        modified: 2000
+      },
+      {
+        modified: 1986
+      }
+    ];
+
+    const expectedResponse = [
+      {
+        modified: 1999
+      },
+      {
+        modified: 1986
+      }
+    ];
+    expect(dateFilter(filteredDataMock, '1')).toStrictEqual(expectedResponse);
+  });
+
+  it('should show characters with date from 21 century', function () {
+    const filteredDataMock = [
+      {
+        modified: 2014
+      },
+      {
+        modified: 2022
+      },
+      {
+        modified: 1999
+      },
+      {
+        modified: 2000
+      },
+      {
+        modified: 1986
+      }
+    ];
+
+    const expectedResponse = [
+      {
+        modified: 2014
+      },
+      {
+        modified: 2022
+      },
+
+      {
+        modified: 2000
+      }
+    ];
+    expect(dateFilter(filteredDataMock, '2')).toStrictEqual(expectedResponse);
+  });
+
+  it('should show characters with date from 21 century', function () {
+    const filteredDataMock = [
+      {
+        modified: 2014
+      },
+      {
+        modified: 2022
+      },
+      {
+        modified: 1999
+      },
+      {
+        modified: 2000
+      },
+      {
+        modified: 1986
+      }
+    ];
+    expect(dateFilter(filteredDataMock, '')).toStrictEqual(filteredDataMock);
+  });
+
+  it('should show return a list of items with description', function () {
+    const filteredDataMock = [
+      {
+        description: 'Description'
+      },
+      {
+        description: ''
+      },
+      {
+        description: ''
+      },
+      {
+        description: 'Description'
+      },
+      {
+        description: 'Description'
+      }
+    ];
+
+    const filteredDataResponse = [
+      {
+        description: 'Description'
+      },
+      {
+        description: 'Description'
+      },
+      {
+        description: 'Description'
+      }
+    ];
+    expect(descriptionFilter(filteredDataMock)).toStrictEqual(filteredDataResponse);
+  });
+
+  it('should show returnfilter list of items by name', function () {
+    const filteredDataMock = [
+      {
+        name: 'Agent Brand'
+      },
+      {
+        name: 'Agent X (Nijo)'
+      },
+      {
+        name: 'Agents of Atlas'
+      },
+      {
+        name: 'Agent Zero'
+      },
+      {
+        name: 'Air-Walker (Gabriel Lan)'
+      }
+    ];
+
+    const filteredDataResponse = [
+      {
+        name: 'Agent Zero'
+      }
+    ];
+    expect(searchFilter(filteredDataMock, 'z')).toStrictEqual(filteredDataResponse);
   });
 });

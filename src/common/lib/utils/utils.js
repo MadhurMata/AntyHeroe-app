@@ -26,3 +26,26 @@ export const mapHeroeData = (heroe) => {
 export const dateFormater = (date) => {
   return new Date(date).getFullYear();
 };
+
+export const dateFilter = (filteredData, selectValue) => {
+  switch (selectValue) {
+    case '1':
+      filteredData = filteredData.filter((item) => item.modified < 2000);
+      break;
+    case '2':
+      filteredData = filteredData.filter((item) => item.modified >= 2000);
+      break;
+    default:
+      filteredData;
+      break;
+  }
+  return filteredData;
+};
+
+export const descriptionFilter = (itemsTemp) => {
+  return itemsTemp.filter((item) => item.description);
+};
+
+export const searchFilter = (filteredData, searchValue) => {
+  return filteredData.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+};

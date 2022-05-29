@@ -5,11 +5,12 @@ import CustomCheckbox from 'components/customCheckbox/CustomCheckbox';
 import CustomSelect from 'components/customSelect/CustomSelect';
 
 import { TreesContext } from 'pages/home/Home';
+import { dateFilter, descriptionFilter, searchFilter } from 'common/lib/utils/utils';
 
 const selectOptions = ['Filter by date (Not filtered)', '20 century', '21 century'];
 
 function Filter() {
-  const [items, items2, setItems] = useContext(TreesContext) || [];
+  const [items, itemsTemp, setItems] = useContext(TreesContext) || [];
   const [showFilter, setShowFilter] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const [selectValue, setSelectValue] = useState('');
@@ -35,35 +36,10 @@ function Filter() {
     setSearchValue(value);
   };
 
-  const dateFilter = (filteredData) => {
-    switch (selectValue) {
-      case '1':
-        filteredData = filteredData.filter((item) => item.modified < '2000');
-        break;
-      case '2':
-        filteredData = filteredData.filter((item) => item.modified >= '2000');
-        break;
-      default:
-        filteredData;
-        break;
-    }
-    return filteredData;
-  };
-
-  const descriptionFilter = () => {
-    return items2.filter((item) => item.description);
-  };
-
-  const searchFilter = (filteredData) => {
-    return filteredData.filter((item) =>
-      item.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-  };
-
   const filter = () => {
-    let filteredData = checkbox ? descriptionFilter() : items2;
-    filteredData = dateFilter(filteredData);
-    filteredData = searchValue ? searchFilter(filteredData) : filteredData;
+    let filteredData = checkbox ? descriptionFilter(itemsTemp) : itemsTemp;
+    filteredData = dateFilter(filteredData, selectValue);
+    filteredData = searchValue ? searchFilter(filteredData, searchValue) : filteredData;
 
     setItems(filteredData);
   };

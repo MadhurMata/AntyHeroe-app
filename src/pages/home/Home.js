@@ -12,17 +12,17 @@ export const TreesContext = createContext();
 function Home() {
   const { loading, data, error } = useFetch('/characters');
   const [items, setItems] = useState();
-  const [items2, setItems2] = useState();
+  const [itemsTemp, setItemsTemp] = useState();
   useEffect(() => {
     if (data) {
       setItems(mapHeroesData(data.data.results));
-      setItems2(mapHeroesData(data.data.results));
+      setItemsTemp(mapHeroesData(data.data.results));
     }
   }, [data]);
 
   return (
     <Layout>
-      <TreesContext.Provider value={[items, items2, setItems]}>
+      <TreesContext.Provider value={[items, itemsTemp, setItems]}>
         <Filter />
         {loading ? (
           <div className="spinner-container">
