@@ -12,7 +12,6 @@ export const mapHeroesData = (heroesList) => {
 };
 
 export const mapHeroeData = (heroe) => {
-  console.log('utils', heroe);
   const { name, description, thumbnail, events, modified } = heroe;
 
   return {
@@ -24,6 +23,6 @@ export const mapHeroeData = (heroe) => {
   };
 };
 
-const dateFormater = (date) => {
+export const dateFormater = (date) => {
   return new Date(date).getFullYear();
 };

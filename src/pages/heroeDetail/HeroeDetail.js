@@ -4,12 +4,14 @@ import Layout from 'components/layout/Layout';
 import { useFetch } from 'hooks/useFetch';
 import { RegularList } from 'components/regularList/RegularList';
 import EventCard from 'components/eventCard/EventCard';
-import { mapHeroeData } from 'common/lib/utils';
+import { mapHeroeData } from 'common/lib/utils/utils';
 
 export default function HeroeDetail() {
   const params = useParams();
   const { loading, data, error } = useFetch(`/characters/${params.heroeId}`);
   const [heroe, setHeroe] = useState();
+
+  console.log(heroe);
 
   useEffect(() => {
     if (data) {

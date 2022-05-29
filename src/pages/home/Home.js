@@ -5,7 +5,7 @@ import HeroCard from 'components/heroCard/HeroCard';
 import Layout from 'components/layout/Layout';
 import Filter from 'components/filter/Filter';
 import { useFetch } from 'hooks/useFetch';
-import { mapHeroesData } from '../../common/lib/utils';
+import { mapHeroesData } from '../../common/lib/utils/utils';
 
 export const TreesContext = createContext();
 
@@ -13,7 +13,6 @@ function Home() {
   const { loading, data, error } = useFetch('/characters');
   const [items, setItems] = useState();
   const [items2, setItems2] = useState();
-
   useEffect(() => {
     if (data) {
       setItems(mapHeroesData(data.data.results));

@@ -51,19 +51,19 @@ function Filter() {
   };
 
   const descriptionFilter = () => {
-    return checkbox ? items2.filter((item) => item.description) : items2;
+    return items2.filter((item) => item.description);
   };
 
   const searchFilter = (filteredData) => {
-    return searchValue
-      ? filteredData.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
-      : filteredData;
+    return filteredData.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
   };
 
   const filter = () => {
-    let filteredData = descriptionFilter();
+    let filteredData = checkbox ? descriptionFilter() : items2;
     filteredData = dateFilter(filteredData);
-    filteredData = searchFilter(filteredData);
+    filteredData = searchValue ? searchFilter(filteredData) : filteredData;
 
     setItems(filteredData);
   };
