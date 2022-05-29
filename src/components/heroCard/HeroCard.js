@@ -1,10 +1,11 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Button from 'components/button/Button';
 
-export default function HeroCard({ heroe }) {
+const HeroCard = React.memo(({ heroe }) => {
   const { thumbnail, name, description, id } = heroe;
   let navigate = useNavigate();
 
@@ -30,8 +31,10 @@ export default function HeroCard({ heroe }) {
       </div>
     </div>
   );
-}
+});
 
 HeroCard.propTypes = {
   hero: PropTypes.object
 };
+
+export default HeroCard;

@@ -1,15 +1,18 @@
 import React from 'react';
 
-function CustomSelect({ updateSelect }) {
+function CustomSelect({ updateSelect, selectOptions }) {
   return (
     <label className="select-custom">
       <select
         name="select"
         className="select-custom__select"
         onChange={(e) => updateSelect(e.target.value)}>
-        <option value="">Filter by date (Not filtered)</option>
-        <option value="0">{'Modefied date < xxx'} </option>
-        <option value="1">{'Modefied date > xxx'}</option>
+        {selectOptions &&
+          selectOptions.map((option, i) => (
+            <option key={i} value={i}>
+              {option}
+            </option>
+          ))}
       </select>
       <div className="select-custom__caret"></div>
     </label>

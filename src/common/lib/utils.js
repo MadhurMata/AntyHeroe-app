@@ -1,23 +1,29 @@
 export const mapHeroesData = (heroesList) => {
   return heroesList.map((heroe) => {
-    const { name, id, description, thumbnail } = heroe;
+    const { name, id, description, thumbnail, modified } = heroe;
     return {
-      name,
       id,
+      name,
       description,
-      thumbnail
+      thumbnail,
+      modified: dateFormater(modified)
     };
   });
 };
 
 export const mapHeroeData = (heroe) => {
-  const { name, description, thumbnail, events, modefied } = heroe[0];
+  console.log('utils', heroe);
+  const { name, description, thumbnail, events, modified } = heroe;
 
   return {
     name,
     description,
     thumbnail,
     events,
-    modefied
+    modified: dateFormater(modified)
   };
+};
+
+const dateFormater = (date) => {
+  return new Date(date).getFullYear();
 };

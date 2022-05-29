@@ -5,6 +5,7 @@ import HeroCard from 'components/heroCard/HeroCard';
 import Layout from 'components/layout/Layout';
 import Filter from 'components/filter/Filter';
 import { useFetch } from 'hooks/useFetch';
+import { mapHeroesData } from '../../common/lib/utils';
 
 export const TreesContext = createContext();
 
@@ -15,8 +16,8 @@ function Home() {
 
   useEffect(() => {
     if (data) {
-      setItems(data.data.results);
-      setItems2(data.data.results);
+      setItems(mapHeroesData(data.data.results));
+      setItems2(mapHeroesData(data.data.results));
     }
   }, [data]);
 
@@ -31,12 +32,14 @@ function Home() {
         ) : error ? (
           JSON.stringify(error, null, 2)
         ) : (
-          <RegularList
-            items={items}
-            resourceName="heroe"
-            styles="list-grid"
-            itemComponent={HeroCard}
-          />
+          items && (
+            <RegularList
+              items={items}
+              resourceName="heroe"
+              styles="list-grid"
+              itemComponent={HeroCard}
+            />
+          )
         )}
       </TreesContext.Provider>
     </Layout>

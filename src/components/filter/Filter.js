@@ -6,6 +6,8 @@ import CustomSelect from 'components/customSelect/CustomSelect';
 
 import { TreesContext } from 'pages/home/Home';
 
+const selectOptions = ['Filter by date (Not filtered)', '20 century', '21 century'];
+
 function Filter() {
   const [items, items2, setItems] = useContext(TreesContext) || [];
   const [showFilter, setShowFilter] = useState(false);
@@ -14,8 +16,8 @@ function Filter() {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    if (items) descriptionFilter();
-  }, [checkbox]);
+    if (items) filter();
+  }, [checkbox, searchValue, selectValue]);
 
   const toggleFilter = () => {
     setShowFilter(!showFilter);
@@ -29,24 +31,47 @@ function Filter() {
     setSelectValue(value);
   };
 
-  const descriptionFilter = () => {
-    const filteredData = checkbox ? items.filter((item) => item.description) : items2;
-    setItems(filteredData);
-    //setItems(filteredData);
-  };
-
-  const dateFilter = () => {
-    if (checkbox) console.log('yyy');
-  };
-
-  const searchFilter = (value) => {
+  const updateSearchValue = (value) => {
     setSearchValue(value);
+  };
+
+  const dateFilter = (filteredData) => {
+    switch (selectValue) {
+      case '1':
+        filteredData = filteredData.filter((item) => item.modified < '2000');
+        break;
+      case '2':
+        filteredData = filteredData.filter((item) => item.modified >= '2000');
+        break;
+      default:
+        filteredData;
+        break;
+    }
+    return filteredData;
+  };
+
+  const descriptionFilter = () => {
+    return checkbox ? items2.filter((item) => item.description) : items2;
+  };
+
+  const searchFilter = (filteredData) => {
+    return searchValue
+      ? filteredData.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+      : filteredData;
+  };
+
+  const filter = () => {
+    let filteredData = descriptionFilter();
+    filteredData = dateFilter(filteredData);
+    filteredData = searchFilter(filteredData);
+
+    setItems(filteredData);
   };
 
   return (
     <div className="filter">
       <div className="filter_top">
-        <Searchbar handleChange={searchFilter} searchValue={searchValue} />
+        <Searchbar handleChange={updateSearchValue} searchValue={searchValue} />
         <Button action={toggleFilter} textContent="Filter" imageUrl="icon-filter" />
       </div>
       {showFilter ? (
@@ -56,7 +81,7 @@ function Filter() {
             checkbox={checkbox}
             label="Heroes with description only"
           />
-          <CustomSelect updateSelect={updateSelect} />
+          <CustomSelect updateSelect={updateSelect} selectOptions={selectOptions} />
         </div>
       ) : null}
     </div>
