@@ -29,12 +29,15 @@ function Home() {
             <div className="spinner"></div>
           </div>
         ) : error ? (
-          JSON.stringify(error, null, 2)
+          <div>
+            <h5>Error loading data!...</h5>
+          </div>
         ) : (
           items && (
             <RegularList
               items={items}
               resourceName="heroe"
+              emptyItemsMessage={`Sorry we couldn't find any heroe`}
               styles="list-grid"
               itemComponent={HeroCard}
             />

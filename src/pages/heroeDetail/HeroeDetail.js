@@ -11,8 +11,6 @@ export default function HeroeDetail() {
   const { loading, data, error } = useFetch(`/characters/${params.heroeId}`);
   const [heroe, setHeroe] = useState();
 
-  console.log(heroe);
-
   useEffect(() => {
     if (data) {
       setHeroe(mapHeroeData(data.data.results[0]));
@@ -26,7 +24,9 @@ export default function HeroeDetail() {
           <div className="spinner"></div>
         </div>
       ) : error ? (
-        JSON.stringify(error, null, 2)
+        <div>
+          <h5>Error loading data!...</h5>
+        </div>
       ) : (
         heroe && (
           <>

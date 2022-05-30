@@ -10,7 +10,9 @@ function CustomCheckbox({ checkbox = false, toggleCheckboxState, label }) {
         onChange={() => toggleCheckboxState()}
         onKeyDown={() => toggleCheckboxState()}
       />
-      <label htmlFor="checkbox2">{label}</label>
+      <label htmlFor="checkbox2">
+        <p>{label}</p>
+      </label>
     </div>
   );
 }

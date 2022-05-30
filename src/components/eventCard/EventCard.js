@@ -1,8 +1,11 @@
 import React from 'react';
 
 function EventCard({ event }) {
-  console.log('event', event);
-  return <div>{event.name}</div>;
+  return (
+    <div>
+      <p>{event.name}</p>
+    </div>
+  );
 }
 
 export default EventCard;

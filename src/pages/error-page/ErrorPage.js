@@ -9,13 +9,11 @@ export default function NotFound() {
       <img src={errorImg} alt="Work in progress" />
       <div>
         <h3>Ops...</h3>
-        <p>We did not found what you where looking for.</p>
-        <p>
+        <h5>We did not found what you where looking for.</h5>
+        <h5>
           You can return to the
-          <Link to="/" className="link">
-            <span> Home page</span>
-          </Link>
-        </p>
+          <Link to="/"> Home page</Link>
+        </h5>
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
+/**
+ * Maps API response returning only needed data:
+ * @param {array} heroesList List of heroes.
+ */
 export const mapHeroesData = (heroesList) => {
   return heroesList.map((heroe) => {
     const { name, id, description, thumbnail, modified } = heroe;
@@ -11,6 +15,10 @@ export const mapHeroesData = (heroesList) => {
   });
 };
 
+/**
+ * Maps API response returning only needed data:
+ * @param {object} heroe Heroe data.
+ */
 export const mapHeroeData = (heroe) => {
   const { name, description, thumbnail, events, modified } = heroe;
 
@@ -23,10 +31,19 @@ export const mapHeroeData = (heroe) => {
   };
 };
 
+/**
+ * Formats date retriving the year:
+ * @param {string} date Modified date.
+ */
 export const dateFormater = (date) => {
   return new Date(date).getFullYear();
 };
 
+/**
+ * Filters heroes array by modified year:
+ * @param {array} filteredData Heroes list.
+ * @param {string} selectValue Select value.
+ */
 export const dateFilter = (filteredData, selectValue) => {
   switch (selectValue) {
     case '1':
@@ -42,10 +59,19 @@ export const dateFilter = (filteredData, selectValue) => {
   return filteredData;
 };
 
+/**
+ * Filters heroes array by description:
+ * @param {array} itemsTemp Heroes list.
+ */
 export const descriptionFilter = (itemsTemp) => {
   return itemsTemp.filter((item) => item.description);
 };
 
+/**
+ * Filters heroes array :
+ * @param {array} filteredData Heroes list.
+ * @param {string} searchValue Search input value.
+ */
 export const searchFilter = (filteredData, searchValue) => {
   return filteredData.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
 };

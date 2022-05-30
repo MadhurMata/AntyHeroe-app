@@ -1,8 +1,14 @@
-export const RegularList = ({ items, resourceName, itemComponent: ItemComponent, styles }) => {
+export const RegularList = ({
+  items,
+  emptyItemsMessage,
+  resourceName,
+  itemComponent: ItemComponent,
+  styles
+}) => {
   if (items.length === 0)
     return (
       <div>
-        <h5>{`Sorry we couldn't find any heroe`}</h5>
+        <h5>{emptyItemsMessage}</h5>
       </div>
     );
   return (

@@ -36,6 +36,7 @@ function Filter() {
     setSearchValue(value);
   };
 
+  /* Filters array of heroes everytime one of the inputs changes */
   const filter = () => {
     let filteredData = checkbox ? descriptionFilter(itemsTemp) : itemsTemp;
     filteredData = dateFilter(filteredData, selectValue);
@@ -46,12 +47,12 @@ function Filter() {
 
   return (
     <div className="filter">
-      <div className="filter_top">
+      <div className="filter_shown">
         <Searchbar handleChange={updateSearchValue} searchValue={searchValue} />
         <Button action={toggleFilter} textContent="Filter" imageUrl="icon-filter" />
       </div>
       {showFilter ? (
-        <div className="filter_bottom">
+        <div className="filter_hidden">
           <CustomCheckbox
             toggleCheckboxState={toggleCheckboxState}
             checkbox={checkbox}

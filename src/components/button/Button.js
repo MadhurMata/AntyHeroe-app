@@ -8,7 +8,7 @@ function Button({ action, imageUrl, textContent }) {
       tabIndex={0}
       onClick={() => action()}
       onKeyDown={() => action()}>
-      <h4>{textContent}</h4>
+      <p>{textContent}</p>
       <span className={'icon ' + imageUrl}></span>
     </div>
   );
